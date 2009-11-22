@@ -28,6 +28,7 @@ execute "install-mongodb" do
     pushd /usr/local
     wget http://downloads.mongodb.org/linux/mongodb-linux-x86_64-1.0.1.tgz
     tar xf mongodb-linux-x86_64-1.0.1.tgz
+    rm mongodb-linux-x86_64-1.0.1.tgz
     popd
   }
   not_if { File.directory?('/usr/local/mongodb-linux-x86_64-1.0.1/bin/mongod') }
