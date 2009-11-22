@@ -36,6 +36,9 @@ end
 
 remote_file "/etc/init.d/mongodb" do
   source "mongodb"
+  owner "root"
+  group "root"
+  mode 0755
 end
 
 template "/etc/conf.d/mongodb" do
