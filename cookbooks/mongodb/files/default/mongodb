@@ -10,7 +10,7 @@ MONGODB_LOG="${MONGODB_LOG:-/data/log/mongodb/mongodb.log}"
 MONGODB_USER="${MONGODB_USER:-mongodb}"
 MONGODB_PID_FILE="${MONGODB_PID_FILE:-/var/run/mongodb/mongodb.pid}"
 
-MONGODB_IP="${MONDOB_IP:-127.0.0.1}"
+MONGODB_IP="${MONGODB_IP:-127.0.0.1}"
 MONGODB_PORT="${MONGODB_PORT:-27017}"
 
 start() {
