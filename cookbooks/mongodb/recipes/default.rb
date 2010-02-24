@@ -3,35 +3,28 @@
 # Recipe:: default
 
 
-directory "/data/mongodb/master" do
+directory "/data/master" do
   owner node[:owner_name]
   group node[:owner_name]
   mode 0755
   recursive true
 end
-directory "/data/mongodb/master/log" do
+directory "/data/master/log" do
   owner node[:owner_name]
   group node[:owner_name]
   mode 0755
   recursive true
 end
-
-#directory "/data/slave" do
-  #owner node[:owner_name]
-  #group node[:owner_name]
-  #mode 0755
-  #recursive true
-#end
 
 execute "install-mongodb" do
   command %Q{
     pushd /usr/local
-    wget http://downloads.mongodb.org/linux/mongodb-linux-x86_64-1.0.1.tgz
-    tar xf mongodb-linux-x86_64-1.0.1.tgz
-    rm mongodb-linux-x86_64-1.0.1.tgz
+    wget http://downloads.mongodb.org/linux/mongodb-linux-x86_64-1.2.3.tgz
+    tar xf mongodb-linux-x86_64-1.2.3.tgz
+    rm mongodb-linux-x86_64-1.2.3.tgz
     popd
   }
-  not_if { File.directory?('/usr/local/mongodb-linux-x86_64-1.0.1/bin/mongod') }
+  not_if { File.directory?('/usr/local/mongodb-linux-x86_64-1.2.3/bin/mongod') }
 end
 
 remote_file "/etc/init.d/mongodb" do
@@ -47,8 +40,8 @@ template "/etc/conf.d/mongodb" do
   mode 0644
   source "mongodb.conf.erb"
   variables({
-    :data => "/data/mongodb/master",
-    :log => "/data/mongodb/master/log/mongodb.log",
+    :data => "/data/master",
+    :log => "/data/master/log/mongodb.log",
     :pid_file => "/data/master/mongodb.pid",
     :user => node[:owner_name],
     :ip => '0.0.0.0',
